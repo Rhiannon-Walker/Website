@@ -1,0 +1,37 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "rhiannon_walker_website"
+
+description = "Following my mind as I navigate life."
+
+readme = "README.md"
+requires-python = ">=3.7"
+license = "MIT"
+
+
+authors = [
+  { name = "Rhiannon Walker", email = "rhiannon@rhiannonwalker.com" },
+]
+
+
+dependencies = ['markata~=0.5.0.dev0']
+dynamic = ["version"]
+
+[tool.hatch.version]
+path = "rhiannon_walker_website/__about__.py"
+
+[tool.hatch.envs.default]
+dependencies = [
+  "pyinstrument",
+]
+
+[tool.hatch.envs.default.scripts]
+clean = "markata clean"
+build = "markata build"
+tui = "markata tui"
+serve = "python -m http.server 8000 --directory=markout"
+clean-build = ['clean', 'build',]
+clean-tui = ['clean', 'build', 'tui']

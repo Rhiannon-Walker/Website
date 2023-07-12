@@ -1,0 +1,11 @@
+# Changes here will be overwritten by Copier
+_commit: v3
+_src_path: git+https://github.com/WaylonWalker/markata-blog-starter
+author_email: rhiannon@rhiannonwalker.com
+author_fullname: Rhiannon Walker
+author_twitter: '@Every.Breath.I.Take'
+description: Following my mind as I navigate life.
+project_name: Rhiannon Walker Website
+python_package_import_name: rhiannon_walker_website
+url: https://rhiannonwalker.com
+

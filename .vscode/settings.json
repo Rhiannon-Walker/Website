@@ -1,0 +1,14 @@
+{
+    "grammarly.selectors": [
+        {
+            "language": "markdown",
+            "scheme": "file",
+            "pattern": "pages/index.md"
+        },
+        {
+            "language": "markdown",
+            "scheme": "file",
+            "pattern": "pages/carpet.md"
+        }
+    ]
+}
