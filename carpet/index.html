@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<title>It's just the Carpet...</title>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta a="" and="" are="" carpet.="" content="Everyone knows when you do anything to a house, you start with a primary thought, such as, " couple="" dollars="" done="" fix="" i="" kitchen="" later.="" living="" name="description" nearly="" our="" pee-stained="" room="" the="" thousand="" to="" want=""/>
+<link href="/icon.png" rel="icon" type="image/png"/>
+<script>
+    function setTheme(theme) {
+        document.documentElement.setAttribute("data-theme", theme);
+    }
+
+    function detectColorSchemeOnLoad() {
+        //local storage is used to override OS theme settings
+        if (localStorage.getItem("theme")) {
+            if (localStorage.getItem("theme") == "dark") {
+                setTheme('dark')
+            } else if (localStorage.getItem("theme") == "light") {
+                setTheme('light')
+            }
+        } else if (!window.matchMedia) {
+            //matchMedia method not supported
+            setTheme('light')
+            return false;
+        } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+            //OS theme setting detected as dark
+            setTheme('dark')
+        } else {
+            setTheme('light')
+        }
+    }
+    detectColorSchemeOnLoad();
+    document.addEventListener('DOMContentLoaded', function() {
+        //identify the toggle switch HTML element
+        const toggleSwitch = document.querySelector('#theme-switch input[type="checkbox"]');
+
+        //function that changes the theme, and sets a localStorage variable to track the theme between page loads
+        function switchTheme(e) {
+            if (e.target.checked) {
+                localStorage.setItem('theme', 'dark');
+                document.documentElement.setAttribute('data-theme', 'dark');
+                toggleSwitch.checked = true;
+            } else {
+                localStorage.setItem('theme', 'light');
+                document.documentElement.setAttribute('data-theme', 'light');
+                toggleSwitch.checked = false;
+            }
+        }
+
+        //listener for changing themes
+        toggleSwitch.addEventListener('change', switchTheme, false);
+
+        //pre-check the dark-theme checkbox if dark-theme is set
+        if (document.documentElement.getAttribute("data-theme") == "dark") {
+            toggleSwitch.checked = true;
+        }
+
+    }, false);
+
+  </script>
+<style>
+      :root {
+        --color-bg: #54243d;
+        --color-bg-code: #1f2022;
+        --color-text: #eefbfe;
+        --color-link: #3ad8ad; 
+        --color-accent: #3ad8ad;
+        --overlay-brightness: .85;
+        --body-width: 800px;
+      }
+      [data-theme="dark"] {
+        --color-bg: #54243d;
+        --color-bg-code: #1f2022;
+        --color-text: #eefbfe;
+        --color-link: #3ad8ad; 
+        --color-accent: #3ad8ad;
+        --overlay-brightness: .85;
+        --body-width: 800px;
+      }
+      [data-theme="light"] {
+        --color-bg: #eefbfe;
+        --color-bg-code: #eefbfe;
+        --color-text: #1f2022;
+        --color-link: #3ad8ad; 
+        --color-accent: #3ad8ad;
+        --overlay-brightness: .95;
+      }
+
+      html  { 
+        font-family: "Space Mono", monospace;
+        background: var(--color-bg);
+        color: var(--color-text);
+      }
+
+      a { 
+        color: var(--color-link);
+      }
+      main a { 
+        max-width: 100%;
+      }
+      .heading-permalink {
+        font-size: .7em;
+      }
+      body {
+        max-width: var(--body-width);
+        margin: 5rem auto;
+        padding: 0 .5rem;
+        font-size: 1rem;
+        line-height: 1.56;
+      }
+      blockquote {
+        background: var(--color-bg);
+        filter: brightness(var(--overlay-brightness));
+        border-left: 5px solid var(--color-accent);
+        padding-left: 1rem;
+        margin: 1rem;
+        }
+      li.post {
+        list-style-type: None;
+        padding: .2rem 0;
+      }
+      pre {
+        padding: 1rem;
+        max-width: fit-content;
+        overflow-x: auto;
+      }
+
+
+      .highlight  {
+        background: var(--color-bg-code);
+        color: var(--color-text);
+        filter: brightness(var(--overlay-brightness));
+      }
+      .highlight .c { color: #8b8b8b } /* Comment */
+      .highlight .err { color: #960050; background-color: #1e0010 } /* Error */
+      .highlight .k { color: #c678dd } /* Keyword */
+      .highlight .l { color: #ae81ff } /* Literal */
+      .highlight .n { color: #abb2bf } /* Name */
+      .highlight .o { color: #c678dd } /* Operator */
+      .highlight .p { color: #abb2bf } /* Punctuation */
+      .highlight .ch { color: #8b8b8b } /* Comment.Hashbang */
+      .highlight .cm { color: #8b8b8b } /* Comment.Multiline */
+      .highlight .cp { color: #8b8b8b } /* Comment.Preproc */
+      .highlight .cpf { color: #8b8b8b } /* Comment.PreprocFile */
+      .highlight .c1 { color: #8b8b8b } /* Comment.Single */
+      .highlight .cs { color: #8b8b8b } /* Comment.Special */
+      .highlight .gd { color: #c678dd } /* Generic.Deleted */
+      .highlight .ge { font-style: italic } /* Generic.Emph */
+      .highlight .gi { color: #a6e22e } /* Generic.Inserted */
+      .highlight .gs { font-weight: bold } /* Generic.Strong */
+      .highlight .gu { color: #8b8b8b } /* Generic.Subheading */
+      .highlight .kc { color: #c678dd } /* Keyword.Constant */
+      .highlight .kd { color: #c678dd } /* Keyword.Declaration */
+      .highlight .kn { color: #c678dd } /* Keyword.Namespace */
+      .highlight .kp { color: #c678dd } /* Keyword.Pseudo */
+      .highlight .kr { color: #c678dd } /* Keyword.Reserved */
+      .highlight .kt { color: #c678dd } /* Keyword.Type */
+      .highlight .ld { color: #e6db74 } /* Literal.Date */
+      .highlight .m { color: #ae81ff } /* Literal.Number */
+      .highlight .s { color: #e6db74 } /* Literal.String */
+      .highlight .na { color: #a6e22e } /* Name.Attribute */
+      .highlight .nb { color: #98c379 } /* Name.Builtin */
+      .highlight .nc { color: #abb2bf } /* Name.Class */
+      .highlight .no { color: #c678dd } /* Name.Constant */
+      .highlight .nd { color: #abb2bf } /* Name.Decorator */
+      .highlight .ni { color: #abb2bf } /* Name.Entity */
+      .highlight .ne { color: #a6e22e } /* Name.Exception */
+      .highlight .nf { color: #61afef } /* Name.Function */
+      .highlight .nl { color: #abb2bf } /* Name.Label */
+      .highlight .nn { color: #abb2bf } /* Name.Namespace */
+      .highlight .nx { color: #a6e22e } /* Name.Other */
+      .highlight .py { color: #abb2bf } /* Name.Property */
+      .highlight .nt { color: #c678dd } /* Name.Tag */
+      .highlight .nv { color: #abb2bf } /* Name.Variable */
+      .highlight .ow { color: #c678dd } /* Operator.Word */
+      .highlight .w { color: #abb2bf } /* Text.Whitespace */
+      .highlight .mb { color: #ae81ff } /* Literal.Number.Bin */
+      .highlight .mf { color: #ae81ff } /* Literal.Number.Float */
+      .highlight .mh { color: #ae81ff } /* Literal.Number.Hex */
+      .highlight .mi { color: #ae81ff } /* Literal.Number.Integer */
+      .highlight .mo { color: #ae81ff } /* Literal.Number.Oct */
+      .highlight .sa { color: #e6db74 } /* Literal.String.Affix */
+      .highlight .sb { color: #e6db74 } /* Literal.String.Backtick */
+      .highlight .sc { color: #e6db74 } /* Literal.String.Char */
+      .highlight .dl { color: #e6db74 } /* Literal.String.Delimiter */
+      .highlight .sd { color: #98c379 } /* Literal.String.Doc */
+      .highlight .s2 { color: #98c379 } /* Literal.String.Double */
+      .highlight .se { color: #ae81ff } /* Literal.String.Escape */
+      .highlight .sh { color: #e6db74 } /* Literal.String.Heredoc */
+      .highlight .si { color: #e6db74 } /* Literal.String.Interpol */
+      .highlight .sx { color: #e6db74 } /* Literal.String.Other */
+      .highlight .sr { color: #e6db74 } /* Literal.String.Regex */
+      .highlight .s1 { color: #e6db74 } /* Literal.String.Single */
+      .highlight .ss { color: #e6db74 } /* Literal.String.Symbol */
+      .highlight .bp { color: #abb2bf } /* Name.Builtin.Pseudo */
+      .highlight .fm { color: #61afef } /* Name.Function.Magic */
+      .highlight .vc { color: #abb2bf } /* Name.Variable.Class */
+      .highlight .vg { color: #abb2bf } /* Name.Variable.Global */
+      .highlight .vi { color: #abb2bf } /* Name.Variable.Instance */
+      .highlight .vm { color: #abb2bf } /* Name.Variable.Magic */
+      .highlight .il { color: #ae81ff } /* Literal.Number.Integer.Long */
+
+  /* Tab style starts here */
+  .tabbed-set {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 1em 0;
+  border-radius: 0.1rem;
+  }
+
+  .tabbed-set > input {
+  display: none;
+  }
+
+  .tabbed-set label {
+  width: auto;
+  padding: 0.9375em 1.25em 0.78125em;
+  font-weight: 700;
+  font-size: 0.84em;
+  white-space: nowrap;
+  border-bottom: 0.15rem solid transparent;
+  border-top-left-radius: 0.1rem;
+  border-top-right-radius: 0.1rem;
+  cursor: pointer;
+  transition: background-color 250ms, color 250ms;
+  }
+
+  .tabbed-set .tabbed-content {
+  width: 100%;
+  display: none;
+  box-shadow: 0 -.05rem #ddd;
+  }
+
+  .tabbed-set input {
+  position: absolute;
+  opacity: 0;
+  }
+
+  /* fonts */
+  h1 {
+    font-weight: 700;
+  }
+
+  h1#title a {
+    font-size: 16px;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin-top: 3rem;
+  }
+
+  h1 {
+    font-size: 2.5em;
+    margin-top: 5rem;
+  }
+
+  h2 {
+    font-size: 1.63rem;
+    margin-top: 5rem;
+  }
+
+
+
+  p {
+    font-size: 21px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 400;
+    line-height: 1.5;
+  }
+
+  @media only screen and (max-width: 700px) {
+    p {
+        font-size: 18px;
+    }
+  }
+
+  @media only screen and (max-width: 600px) {
+    p {
+        font-size: 16px;
+    }
+  }
+
+  @media only screen and (max-width: 500px) {
+    p {
+        font-size: 14px;
+    }
+  }
+
+  @media only screen and (max-width: 400px) {
+    p {
+        font-size: 12px;
+    }
+  }
+
+
+  pre {
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 400;
+    line-height: 18.5714px; */
+  }
+
+  a {
+    font-weight: 600;
+    text-decoration-color: var(--color-accent);
+    color: var(--color-link);
+    padding: .3rem .5rem;
+    display: inline-block;
+  }
+
+  .admonition {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    text-align: left;
+  }
+
+  .admonition.note {
+    color: #79d3e6;
+    background-color: #081d28;
+    border-color: #1c7183;
+  }
+
+  .admonition.warning {
+    color: #e6ca7a;
+    background-color: #4f4409;
+    border-color: #855c0d;
+  }
+
+  .admonition.danger {
+    color: #e67471;
+    background-color: #461c1c;
+    border-color: #6e2b33;
+  }
+
+  .admonition-title {
+    font-weight: bold;
+    text-align: left;
+  }
+
+  table {
+    margin: 1rem 0;
+    border-collapse: collapse;
+    border-spacing: 0;
+    display: block;
+    max-width: -moz-fit-content;
+    max-width: fit-content;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  table thead th {
+    border: solid 1px var(--color-text);
+    padding: 10px;
+    text-align: left;
+  }
+
+  table tbody td {
+    border: solid 1px var(--color-text);
+    padding: 10px;
+  }
+  .theme-switch {
+  z-index: 10;
+  display: inline-block;
+  height: 34px;
+  position: relative;
+  width: 60px;
+
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 1rem;
+    margin-left: auto;
+    position: fixed;
+    right: 1rem;
+    top: 1rem;
+  }
+
+  .theme-switch input {
+  display:none;
+
+  }
+
+  .slider {
+  background-color: #ccc;
+  bottom: 0;
+  cursor: pointer;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: .4s;
+  }
+
+  .slider:before {
+  background-color: #fff;
+  bottom: 4px;
+  content: "";
+  height: 26px;
+  left: 4px;
+  position: absolute;
+  transition: .4s;
+  width: 26px;
+  }
+
+  input:checked + .slider {
+  background-color: #343434;
+  }
+  input:checked + .slider:before {
+  background-color: #848484;
+  }
+
+  input:checked + .slider:before {
+  transform: translateX(26px);
+  }
+
+  .slider.round {
+  border-radius: 34px;
+  }
+
+  .slider.round:before {
+  border-radius: 50%;
+  }
+
+  main p img {
+    width: 100%;
+    width: -moz-available;
+    width: -webkit-fill-available;
+    width: fill-available;
+  }
+
+  </style>
+<title>It's just the Carpet...</title>
+<meta content="It's just the Carpet..." name="twitter:title"/>
+<meta content="It's just the Carpet..." name="og:title"/>
+<meta content='Everyone knows when you do anything to a house, you start with a primary thought, such as, "I want to fix the pee-stained carpet."  Our kitchen and living room are nearly done a couple thousand dollars later.' name="description"/>
+<meta content='Everyone knows when you do anything to a house, you start with a primary thought, such as, "I want to fix the pee-stained carpet."  Our kitchen and living room are nearly done a couple thousand dollars later.' name="og:description"/>
+<meta content='Everyone knows when you do anything to a house, you start with a primary thought, such as, "I want to fix the pee-stained carpet."  Our kitchen and living room are nearly done a couple thousand dollars later.' name="twitter:description"/>
+<meta content="article" name="og:type"/>
+<meta content="https://rhiannonwalker.com/carpet/" name="og:url"/>
+<meta content="https://rhiannonwalker.com/carpet.jpg" name="og:image"/>
+<meta content="1200" name="og:image:width"/>
+<meta content="600" name="og:image:height"/>
+<meta content="@Every.Breath.I.Take" name="twitter:creator"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="Rhiannon Walker" name="og:author"/>
+<meta content="Rhiannon Walker Website" name="og:site_name"/>
+<meta content="rhiannon@rhiannonwalker.com" name="og:author_email"/>
+<meta content="markata 0.5.5" name="generator"/>
+<meta content="#322D39" name="theme-color"/>
+<link href="https://rhiannonwalker.com/carpet/" rel="canonical"/>
+<link href="/manifest.json" rel="manifest"/></head>
+<body><nav>
+<a href="/">Home</a>
+<a href="/archive">All Posts</a>
+</nav>
+<div>
+<label class="theme-switch" for="checkbox-theme" id="theme-switch" title="light/dark mode toggle">
+<input id="checkbox-theme" type="checkbox"/>
+<div class="slider round"> </div>
+</label>
+</div>
+<section class="title">
+<h1 id="title">
+    It's just the Carpet...
+    
+  </h1>
+</section>
+<main>
+<p>I had good intentions when I said I wanted to replace just the carpet. However, if you look at the path to replace the flooring, it continues with the floors. We should paint so we are not ruining the new flooring as it goes down. Plus, I am being honest; the maroon and tan that our home has EVERYWHERE is incredibly triggering to me (that's a trauma issue). It's time for the paint colors to go!</p>
+<p>Now that we have the floors and walls covered, have I mentioned how outdated our furniture is? This being our first home, it looked like six different apartments crammed together, with an assortment of storage and decor.</p>
+<p>Waylon had already sprayed our brick fireplace black to test the new paint sprayer before using it on the front of our house. We love the way the black looks on the brick. Now it was time to cover up the maroon and tan. Waylon decided he could spray the walls. It went quickly but filled our home with paint fumes, leaving my lungs in distress.  </p>
+<blockquote>
+<p>I always balance my medical symptoms with my stubbornness to get things done. However, breathing is a deal breaker.</p>
+</blockquote>
+<p>I stopped him from spraying, and we rolled the remaining wall. The intense release of emotion I felt covering up the maroon and tan was terrific! I will put the paint colors below if you are curious.</p>
+<p><img alt="Spraying the Gray Paint" src="/livingroom-kitchen/livingroom-kitchen-remodle/living-paint-spraying.jpg" style=" margin-right: 1.5rem; aspect-ratio: 1; object-fit:cover; width:300px;height:300px; float: left;"/></p>
+<p>SO... Off to Menards I went. I was trying to purchase the cheapest flooring to fix this carpet so our animals stopped shredding it and marking their territories.</p>
+<p>I purchased this cheap flooring that was on sale. It would get the living room done in under $400; that way, when we want to eventually put the money towards the flooring, we can upgrade. I loaded the flooring and got it home.  </p>
+<p><img alt="Cheap Flooring Fail Price" src="/livingroom-kitchen/livingroom-kitchen-remodle/cheap-flooring.jpg" style="border-radius:100%; aspect-ratio: 1; object-fit:cover;width:250px; float:right;"/></p>
+<p>There, a solution was made. Until I had Waylon unload all the boxes into our living room, I started trying to lay down this "flooring." I am convinced it is just fancy cardboard at this point. The planks were made from MDF and shredded as the boards went together. It looked horrible on our floor, and we only put one box down. This was not a good sign. We quickly realized why quality is so much more important than quantity. Back to the drawing boards we went. Or, in my case, back to Pinterest and YouTube. </p>
+<div class="admonition note">
+<p class="admonition-title">Lesson 1:</p>
+<p>Do not be a cheap scape and figure out your desired final look. Buy quality products to start with.</p>
+</div>
+<p>We took a step back; I watched many YouTube videos, automatically making me a professional in my tackling. I learned about the various types of floors and what underlayment is. I researched the three big box stores in our area and realized that HomeDepot was the place I was going with to get the LifeProof Flooring. I like how it looks, and its features of being suitable for pets and kids and somewhat waterproof were lyrics to my ears. The cost got me, though. Whew...not what I wanted to spend, but I am thankful we did it. In the long run, this will make our home beautiful, eliminate the mismatched tile, and bring the cabinets only slightly off-color.</p>
+<p>I have future building plans for the cabinets, and worrying about painting them now is not worth the effort. We can survive with the lower cabinets for a little longer. The backsplash was a completely different story. Brown backsplash with modern blue-white countertops, um...I think not. </p>
+<p>When we moved in, our upper cabinets were covered in a quarter inch of solid grease, pet hair, and food particles. Goodbye, upper cabinets, and hello, open shelves for now. </p>
+<p>On the record, I had already purchased ball jars and clear containers for dry goods. Making the decision to put open shelving easier. Looking back, I need to raise them a bit, change the layout to put in an oven hood later and eliminate the random junk covering every inch. I wanted the clean and organized look, not let's be monkeys and throw our shit, hoping it stays in place. </p>
+<p>The timeline I assumed this would take is a couple of weekends. Truthfully it took a good 6 months, and that isn't counting the holiday session; we stopped working on the kitchen, and in its place was decorated for Santa. What more could you expect of holiday cheer.</p>
+<p>Now our living room and kitchen are done until I decide something else needs to be changed, and I am the woman for the job. Nothing is ever permanent in my mind.</p>
+<div class="admonition note">
+<p class="admonition-title">Tool List</p>
+<p>Safety Glasses, Carpet Tack Puller, Box Cutter with spare Blades, Trim Crowbar, Regular Crowbar, Vynl Cutter, Red Seam Tape, Safety Gloves, Hearing Protection, Shop Vac with special attachments, Rubber Mallet, and Vynl Floor Accessory Kit.</p>
+</div>
+<div class="admonition danger">
+<p class="admonition-title">Products We Used</p>
+<p>Life Proof Flooring (Oak Trail), Underlayment, Trim Pieces, Red Underlayment Tape, stick-on backsplash, Construction Adhesive, and Caulk for counter and around the Floor.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Paint Colors Used</p>
+<p>FirePlace Brick: 
+FirePLace Wall:
+Light Grey:</p>
+</div>
+<ul>
+<li><a href="index">Rhiannon's Life</a></li>
+<li><a href="carpet">It's just the Carpet...</a></li>
+</ul>
+<div class="prevnext">
+<style type="text/css">
+
+    :root {
+      --prevnext-color-text: #eefbfe;
+      --prevnext-color-angle: #3ad8ad;
+      --prevnext-subtitle-brightness: 3;
+    }
+    [data-theme="light"] {
+      --prevnext-color-text: #1f2022;
+      --prevnext-color-angle: #3ad8ad;
+      --prevnext-subtitle-brightness: 3;
+    }
+    [data-theme="dark"] {
+      --prevnext-color-text: #eefbfe;
+      --prevnext-color-angle: #3ad8ad;
+      --prevnext-subtitle-brightness: 3;
+    }
+    .prevnext {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: flex-start;
+    }
+    .prevnext a {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      text-decoration: none;
+    }
+    a.next {
+      justify-content: flex-end;
+    }
+    .prevnext a:hover {
+      background: #00000006;
+    }
+    .prevnext-subtitle {
+      color: var(--prevnext-color-text);
+      filter: brightness(var(--prevnext-subtitle-brightness));
+      font-size: .8rem;
+    }
+    .prevnext-title {
+      color: var(--prevnext-color-text);
+      font-size: 1rem;
+    }
+    .prevnext-text {
+      max-width: 30vw;
+    }
+    </style>
+<a class="prev" href="/">
+<svg fill="none" height="50px" viewbox="0 0 24 24" width="50px" xmlns="http://www.w3.org/2000/svg">
+<path d="M13.5 8.25L9.75 12L13.5 15.75" stroke="var(--prevnext-color-angle)" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"> </path>
+</svg>
+<div class="prevnext-text">
+<p class="prevnext-subtitle">prev</p>
+<p class="prevnext-title">Rhiannon's Life</p>
+</div>
+</a>
+<a class="next" href="/">
+<div class="prevnext-text">
+<p class="prevnext-subtitle">next</p>
+<p class="prevnext-title">Rhiannon's Life</p>
+</div>
+<svg fill="none" height="50px" viewbox="0 0 24 24" width="50px" xmlns="http://www.w3.org/2000/svg">
+<path d="M10.5 15.75L14.25 12L10.5 8.25" stroke="var(--prevnext-color-angle)" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path>
+</svg>
+</a>
+</div>
+</main>
+<footer>
+    © 2023
+  </footer>
+</body></html>
